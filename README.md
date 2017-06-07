@@ -3,15 +3,15 @@
 ## 简介
 kong + smartstack Docker化部署方案 
 
-kong版本为0.10.1，代理端口8000
+kong版本为0.10.2，代理端口8000
 
 ## 部署
 
-0. 如果本地不存在`foreveross/smartstack-kong-10`镜像，则进入到`smartstack-kong/build-0.10.1`目录下，运行
+0. 如果本地不存在`foreveross/smartstack-kong-10-2`镜像，则进入到`smartstack-kong/build-0.10.2`目录下，运行
 
 	`./build.sh`
 	
-	生成`foreveross/smartstack-kong-10`镜像
+	生成`foreveross/smartstack-kong-10-2`镜像
 
 1. 修改 `./smartstack/nerve/nerve_services/`目录下的`kongService.json`文件
 

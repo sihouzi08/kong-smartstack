@@ -1,20 +1,20 @@
 {
-  "host": "112.74.114.59",
+  "host": "${SERVER_IP}",
   "port": 8001,
   "reporter_type": "zookeeper",
   "zk_hosts": [
-    "112.74.114.59:2181"
+    ${ZOOKEEPER_ADDR}
   ],
   "zk_path": "/infra/services/kong",
-  "check_interval": 20,
+  "check_interval": 2,
   "weight": 2,
   "checks": [
     {
       "type": "http",
       "uri": "/",
-      "timeout": 0.2,
+      "timeout": 5,
       "rise": 3,
-      "fall": 2
+      "fall": 3
     }
   ]
 }

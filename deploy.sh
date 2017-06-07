@@ -9,6 +9,7 @@
 IMAGE_NAME="foreveross/kong-smartstack-10-2"
 CONTAINER_NAME="kong-smartstack-10-2"
 
+
 # 构建镜像
 docker build -t $IMAGE_NAME .
 
@@ -28,13 +29,15 @@ docker run -d --restart=on-failure:5 --name ab-gateway-database \
                 -v $PWD/data:/var/lib/postgresql/data \
                 postgres:9.4
 
+sleep 5;
+
 # 主机模式
-docker run -d \
+docker run -d  \
     -e TZ="Asia/Shanghai" -v /etc/localtime:/etc/localtime:ro \
-    -v $PWD:/project \
-    -v $PWD/conf/kong-cluster.conf:/etc/kong/kong.conf \
-    -v $PWD/plugins/key-auth-redis:/usr/local/share/lua/5.1/kong/plugins/key-auth-redis \
-    -v $PWD/plugins/kong-0.10.1-0.rockspec:/usr/local/lib/luarocks/rocks/kong/0.10.1-0/kong-0.10.1-0.rockspec \
+    -e "SERVER_IP=10.108.1.209" \
+    -e "ZOOKEEPER_ADDR=112.74.114.59:2181" \
+    -e "LIMIT_CONNECTION=5000" \
+    --add-host ${HOSTNAME}:127.0.0.1 \
     --net=host \
     --name $CONTAINER_NAME \
     $IMAGE_NAME

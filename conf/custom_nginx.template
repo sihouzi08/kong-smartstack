@@ -99,7 +99,7 @@ http {
             set $upstream_scheme nil;
 
             # 限制服务器总连接数
-            limit_conn perserver 5000;
+            limit_conn perserver ${LIMIT_CONNECTION};
 
             rewrite_by_lua_block {
                 kong.rewrite()
